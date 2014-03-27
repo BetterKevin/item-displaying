@@ -1,33 +1,17 @@
-<h1>Listing items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= image_tag item.photo.url(:iphone5) %></td>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= item.price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1>服饰</h1>
+<hr>
+<div class="container">
+  <ul class="items">
+    <% @items.each do |item| %>      
+      <li class="item">
+        <p class='item-delete'><%= link_to 'X', item, method: :delete, data: { confirm: '你确定吗?' } %></p>
+        <%= image_tag item.photo.url(:iphone5), class: 'item-image' %>
+      </li>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+    <li class="item new-item">
+      <div class="plus-vertical-middle" >
+        <%= link_to '+', new_item_path  %>
+      </div> 
+    </li>
+  </ul>
+</div>
