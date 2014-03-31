@@ -8,6 +8,10 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def display
+    @items = Item.all
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show
@@ -26,7 +30,6 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }

@@ -7,7 +7,8 @@ gem 'bootstrap-sass'
 group :development do
   gem 'sqlite3'
 end
-
+gem "jquery_mobile_rails", "1.3.2"
+gem 'jquery-mobile-rails-assets'
 gem "paperclip"
 
 # Use SCSS for stylesheets

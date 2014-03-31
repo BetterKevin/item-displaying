@@ -1,0 +1,93 @@
+
+<div>
+    <!--Display Page-->
+    <div data-role="page" data-theme="b" id="page">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>
+                Costume Gallery
+            </h1>
+        </div>
+        <!--Image Gallery -->
+        <div data-role="content" id="content">
+            <div id="display">
+              <% @items.each do |item| %>
+                 <%= image_tag item.photo.url(:iphone5), class: 'item-image' %> 
+              <% end %>
+            </div>
+        </div>
+    </div>
+    <div>
+        <%= link_to 'Back', items_path %>   
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script>
+var prevImage=new Array();
+var nextImage=new Array();
+
+window.onload = function() {
+    var winWidth = document.body.clientWidth;
+    var winHeight= document.body.clientHeight;
+    var img = $("#display img");
+
+    /*Set the size of the display-area*/
+    $("#display").height(winHeight - $("#header").height());
+  $("#display").width(winWidth);
+
+  /*Resize the images to adapt to the screen*/
+  for (var i = 0; i < img.length; i++) {
+        img[i].width = winWidth;
+    img[i].height = $("#display").height();
+    }
+
+  /*Set the z-Index*/
+  for(var i=0; i< img.length; i++){
+    img[i].style.zIndex= img.length - i + 1;
+  }
+
+  /*Initialize the array--nextImage*/
+  for(var i=img.length - 1; i>0;i--){
+    nextImage.push(img[i]);
+  }
+}
+
+/*Slide-Effect using CSS3 animation*/
+$(document).on("pageshow","#page",function(){
+  $("#display img").on('swipeleft',function(event) {
+    if(prevImage.length==$("img").length - 1){
+      alert("已经是最后一张了喔");
+    } else {
+      prevImage.push($(this));
+
+      /*Hide the current image*/
+      $(this).css({
+        'opacity': '0',
+        '-webkit-transform': 'translate(-350px)',
+        '-webkit-transition': 'opacity 0.5s, -webkit-transform 0.5s'
+      });
+    }
+  });
+});
+
+$(document).on("pageshow","#page",function(){
+  $("#display img").on('swiperight',function(event) {
+    var previmage=prevImage.pop();
+    if(previmage){
+      nextImage.push($(this));
+
+      /*Show the previous image*/
+      previmage.css({
+        'opacity': '1',
+        '-webkit-transform': 'translate(0.01px)',
+        '-webkit-transition': 'opacity 0.5s, -webkit-transfrom 0.5s'
+      });
+    } else {
+      alert("已经是第一张了喔");
+    }
+  });
+});
+</script>
