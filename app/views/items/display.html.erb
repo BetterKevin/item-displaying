@@ -11,7 +11,7 @@
         <div data-role="content" id="content">
             <div id="display">
               <% @items.each do |item| %>
-                 <%= image_tag item.photo.url(:iphone5), class: 'item-image' %> 
+                 <%= image_tag item.photo.url, class: 'item-image' %> 
               <% end %>
             </div>
         </div>

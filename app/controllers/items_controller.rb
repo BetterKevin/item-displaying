@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, only: [:index, :edit, :new, :show, :create, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
