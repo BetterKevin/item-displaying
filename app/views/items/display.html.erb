@@ -1,33 +1,32 @@
-
-<div>
-    <!--Display Page-->
-    <div data-role="page" data-theme="b" id="page">
-        <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1>
-                Costume Gallery
-            </h1>
-        </div>
-        <!--Image Gallery -->
-        <div data-role="content" id="content">
-            <div id="display">
-              <% @items.each do |item| %>
-                 <%= image_tag item.photo.url, class: 'item-image' %> 
-              <% end %>
-            </div>
-        </div>
+<!--Display Page-->
+<div data-role="page" data-theme="b" id="page">
+    <div id="header" data-role="header" data-position="fixed" data-tap-toggle="false">
+        <h1>
+            Costume Gallery
+        </h1>
     </div>
-    <div>
-        <%= link_to 'Back', items_path %>   
+    <!--Image Gallery -->
+    <div data-role="content" id="content">
+        <div id="display">
+          <% @items.each do |item| %>
+             <%= image_tag item.photo.url, class: 'item-image' %> 
+          <% end %>
+        </div>
+        <div id="imginfo">
+          <p>please buy me!</p>
+        </div>
     </div>
 </div>
 
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script>
 var prevImage=new Array();
 var nextImage=new Array();
+var isInfoshow = false;
 
 window.onload = function() {
     var winWidth = document.body.clientWidth;
@@ -35,14 +34,23 @@ window.onload = function() {
     var img = $("#display img");
 
     /*Set the size of the display-area*/
-    $("#display").height(winHeight - $("#header").height());
-  $("#display").width(winWidth);
+    $("#display").height(Math.ceil((winHeight - $("#header").height())*0.90));
+  $("#display").width(Math.ceil(winWidth*0.87));
+  $("#display").css({
+    'margin-right': Math.ceil(winWidth*0.13*0.5) + 'px',
+    'margin-top': Math.ceil((winHeight - $("#header").height())*0.10*0.5) + 'px'
+  });
 
   /*Resize the images to adapt to the screen*/
   for (var i = 0; i < img.length; i++) {
-        img[i].width = winWidth;
-    img[i].height = $("#display").height();
+        img[i].width = $("#display").width();
+    img[i].height = $("#display").height() - 4;
     }
+
+    /*resize the imginfo div and its display style*/
+    $("#imginfo").width(Math.ceil(winWidth));
+    $("#imginfo").height(Math.ceil(winHeight*0.2));
+    $("#imginfo").css('line-height', $("#imginfo").height() + 'px');
 
   /*Set the z-Index*/
   for(var i=0; i< img.length; i++){
@@ -56,12 +64,20 @@ window.onload = function() {
 }
 
 /*Slide-Effect using CSS3 animation*/
-$(document).on("pageshow","#page",function(){
+$(document).on("pageinit","#page",function(){
   $("#display img").on('swipeleft',function(event) {
     if(prevImage.length==$("img").length - 1){
       alert("已经是最后一张了喔");
     } else {
       prevImage.push($(this));
+      /*To judge if the imginfo is show or not*/
+      if(isInfoshow==true){
+        $("#imginfo").css({
+          'opacity': '0',
+          '-webkit-transition': 'opacity 0.3s'
+        });
+        isInfoshow = false;
+      }
 
       /*Hide the current image*/
       $(this).css({
@@ -73,11 +89,19 @@ $(document).on("pageshow","#page",function(){
   });
 });
 
-$(document).on("pageshow","#page",function(){
+$(document).on("pageinit","#page",function(){
   $("#display img").on('swiperight',function(event) {
     var previmage=prevImage.pop();
     if(previmage){
       nextImage.push($(this));
+      /*To judge if the imginfo is show or not*/
+      if(isInfoshow==true){
+        $("#imginfo").css({
+          'opacity': '0',
+          '-webkit-transition': 'opacity 0.3s'
+        });
+        isInfoshow = false;
+      }
 
       /*Show the previous image*/
       previmage.css({
@@ -87,6 +111,25 @@ $(document).on("pageshow","#page",function(){
       });
     } else {
       alert("已经是第一张了喔");
+    }
+  });
+});
+
+/*Click to show/hide the imginfo*/
+$(document).on("pageinit","#page",function(){
+  $("#display img").on('click',function(event) {
+    if($("#imginfo").css('opacity')==0){
+      $("#imginfo").css({
+        'opacity': '0.6',
+        '-webkit-transition': 'opacity 0.3s'
+      });
+      isInfoshow = true;
+    } else {
+      $("#imginfo").css({
+        'opacity': '0',
+        '-webkit-transition': 'opacity 0.3s'
+      });
+      isInfoshow = false;
     }
   });
 });
