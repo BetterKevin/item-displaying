@@ -1,22 +1,18 @@
-<div data-role="page" data-theme="b" id="index">
-  <div data-role="header">
-    <h1>服饰</h1>
-  </div>
-  <div data-role="content">
-  <div class="container">
-    <ul class="items">
-      <% @items.each do |item| %>      
-        <li class="item">
-          <p class='item-delete'><%= link_to 'X', item, method: :delete, data: { confirm: '你确定吗?' } %></p>
-          <%= image_tag item.photo.url(:iphone5), class: 'item-image' %>
-        </li>
-      <% end %>
-      <li class="item new-item">
-        <div class="plus-vertical-middle" >
-          <%= link_to '+', new_item_path  %>
-        </div> 
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <h1>服饰</h1>
+</nav>
+<div class="container">
+  <ul class="items">
+    <% @items.each do |item| %>      
+      <li class="item">
+        <p class='item-delete'><%= link_to 'X', item, method: :delete, data: { confirm: '你确定吗?' } %></p>
+        <%= image_tag item.photo.url(:iphone5), class: 'item-image' %>
       </li>
-    </ul>
-  </div>
-</div>
+    <% end %>
+    <li class="item new-item">
+      <div class="plus-vertical-middle" >
+        <%= link_to '+', new_item_path, class: 'plus-sign'  %>
+      </div> 
+    </li>
+  </ul>
 </div>
