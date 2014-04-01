@@ -1,6 +1,12 @@
-<h1>Editing item</h1>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <h1>编辑</h1>
+</nav>
 
-<%= render 'form' %>
+<div class="container">
+  <div class="center-block item-form" >
+    <%= render 'form' %>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+    <%= link_to '展示', @item, class: 'btn btn-primary btn-block' %>
+    <%= link_to '返回', items_path, class: 'btn btn-primary btn-block' %>
+  </div>
+</div>

@@ -1,24 +1,36 @@
-<p id="notice"><%= notice %></p>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <h1>展示</h1>
+</nav>
+<div class="container">
+  <div class="center-block item-form">
+    <p id="notice"><%= notice %></p>
+    <table>
+      <tr>
+        <td class="show-photo">
+          <%= image_tag @item.photo.url(:iphone5) %>  
+        </td>
+        <td class='show-message'>
+           <h3>
+            <strong>名称:</strong>
+            <%= @item.title %>
+          </h3>
+      
+          <h3>
+            <strong>介绍:</strong>
+            <%= @item.description %>
+          </h3>
+      
+          <h3>
+            <strong>价格:</strong>
+            <%= @item.price %>
+          </h3>
 
-<p>
-  <strong>
-  <%= image_tag @item.photo.url(:iphone5) %>  
-  </strong>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %>
-<%= link_to 'Back', items_path %>
+          <h3>
+            <%= link_to '编辑', edit_item_path(@item) %>
+            <%= link_to '返回', items_path %>
+          </h3>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

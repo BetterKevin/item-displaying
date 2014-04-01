@@ -1,2 +1,9 @@
-<%= render 'form' %>
-<%= link_to 'Back', items_path %>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <h1>创建</h1>
+</nav> 
+<div class="container">
+  <div class="center-block item-form" >
+    <%= render 'form' %>
+    <%= link_to '返回', items_path, class: 'btn btn-primary btn-block' %>
+  </div>
+</div>

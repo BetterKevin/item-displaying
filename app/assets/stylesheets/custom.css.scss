@@ -5,6 +5,10 @@ body{
   padding: 0;
 }
 
+.btn-primary:visited {
+  color: white;
+}
+
 nav {
   border-top-left-radius: 10;
   border-bottom-right-radius: 0;
@@ -78,6 +82,46 @@ nav {
     text-decoration: none;
     background-color: black;
   }
+}
+
+.footer {
+  background-color: #eeeeee;
+  p {
+    margin: 30px 0 0 0;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+.item-form {
+  width: 45%;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.border-top-radius {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.border-bottom-radius {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#item_title {
+  height: 50px;
+}
+#item_description {
+  height: 100px;
+}
+#item_price {
+  height: 50px;
+}
+
+td {
+  width: 400px;
+  text-decoration: underline;
 }
 
 * {

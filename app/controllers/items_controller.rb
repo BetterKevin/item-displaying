@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item, notice: '成功创建' }
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to @item, notice: '成功更新' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
