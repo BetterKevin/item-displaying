@@ -4,11 +4,17 @@
     <div data-role="content" id="content">
         <div id="display">
           <% @items.each do |item| %>
-             <%= image_tag item.photo.url, class: 'item-image' %> 
+            <%= image_tag item.photo.url, class: 'item-image' %> 
+          <div id="imginfo">
+            <div class="left-info">
+              <p class="display-title">名称:<%= item.title %></p>
+              <p class="display-price">价格:<%= item.price %></p>
+            </div>  
+            <div class="right-info">
+              <p class="display-description"><%= item.description %></p>
+            </div>
+          </div>
           <% end %>
-        </div>
-        <div id="imginfo">
-          <p>please buy me!</p>
         </div>
     </div>
 </div>
@@ -43,7 +49,7 @@ window.onload = function() {
     }
 
     /*resize the imginfo div and its display style*/
-    $("#imginfo").width(Math.ceil(winWidth));
+    $("#imginfo").width(Math.ceil(winWidth*0.87));
     $("#imginfo").height(Math.ceil(winHeight*0.2));
     $("#imginfo").css('line-height', $("#imginfo").height() + 'px');
 
