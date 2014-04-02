@@ -1,22 +1,24 @@
+<div>
 <!--Display Page-->
-<div data-role="page" data-theme="b" id="page">
+  <div data-role="page" data-theme="b" id="page">
     <!--Image Gallery -->
     <div data-role="content" id="content">
         <div id="display">
           <% @items.each do |item| %>
             <%= image_tag item.photo.url, class: 'item-image' %> 
-            <div id="imginfo">
-              <div class="left-info">
-                <p class="display-title">名称:<%= item.title %></p>
-                <p class="display-price">价格:<%= item.price %></p>
-              </div>  
-              <div class="right-info">
-                <p class="display-description"><%= item.description %></p>
-              </div>
-            </div>
+          <% end %>
+        </div>
+        <div id="imginfo">
+          <% @items.each do |item| %>
+            <p>
+              名称:<%= item.title %>
+              价格:<%= item.price %>
+              <%= item.description %>
+            </p>
           <% end %>
         </div>
     </div>
+  </div>
 </div>
 
 
@@ -33,6 +35,7 @@ window.onload = function() {
     var winWidth = document.body.clientWidth;
     var winHeight= document.body.clientHeight;
     var img = $("#display img");
+    var p = $("p");
 
     /*Set the size of the display-area*/
     $("#display").height(Math.ceil((winHeight - $("#header").height())*0.90));
@@ -49,13 +52,16 @@ window.onload = function() {
     }
 
     /*resize the imginfo div and its display style*/
-    $("#imginfo").width(Math.ceil(winWidth*0.87));
+    $("#imginfo").width(Math.ceil(winWidth));
     $("#imginfo").height(Math.ceil(winHeight*0.2));
     $("#imginfo").css('line-height', $("#imginfo").height() + 'px');
 
   /*Set the z-Index*/
   for(var i=0; i< img.length; i++){
-    img[i].style.zIndex= img.length - i + 1;
+    img[i].style.zIndex= img.length - i;
+  }
+  for(var i=0; i< p.length; i++){
+    p[i].style.zIndex= p.length - i;
   }
 
   /*Initialize the array--nextImage*/
@@ -71,14 +77,11 @@ $(document).on("pageinit","#page",function(){
       alert("已经是最后一张了喔");
     } else {
       prevImage.push($(this));
-      /*To judge if the imginfo is show or not*/
-      if(isInfoshow==true){
-        $("#imginfo").css({
-          'opacity': '0',
-          '-webkit-transition': 'opacity 0.3s'
-        });
-        isInfoshow = false;
-      }
+
+      /*Change the imginfo*/
+      var p = $("p");
+      var i = $("img").length - $(this).css('z-Index');
+      $(p[i]).attr('hidden', 'hidden');
 
       /*Hide the current image*/
       $(this).css({
@@ -95,14 +98,11 @@ $(document).on("pageinit","#page",function(){
     var previmage=prevImage.pop();
     if(previmage){
       nextImage.push($(this));
-      /*To judge if the imginfo is show or not*/
-      if(isInfoshow==true){
-        $("#imginfo").css({
-          'opacity': '0',
-          '-webkit-transition': 'opacity 0.3s'
-        });
-        isInfoshow = false;
-      }
+
+      /*Change the imginfo*/
+      var p = $("p");
+      var i = $("img").length - $(this).css('z-Index') - 1;
+      $(p[i]).removeAttr('hidden');
 
       /*Show the previous image*/
       previmage.css({
@@ -116,7 +116,7 @@ $(document).on("pageinit","#page",function(){
   });
 });
 
-/*Click to show/hide the imginfo*/
+/*Click to show or hide the imginfo*/
 $(document).on("pageinit","#page",function(){
   $("#display img").on('click',function(event) {
     if($("#imginfo").css('opacity')==0){
