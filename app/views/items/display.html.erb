@@ -5,15 +5,15 @@
         <div id="display">
           <% @items.each do |item| %>
             <%= image_tag item.photo.url, class: 'item-image' %> 
-          <div id="imginfo">
-            <div class="left-info">
-              <p class="display-title">名称:<%= item.title %></p>
-              <p class="display-price">价格:<%= item.price %></p>
-            </div>  
-            <div class="right-info">
-              <p class="display-description"><%= item.description %></p>
+            <div id="imginfo">
+              <div class="left-info">
+                <p class="display-title">名称:<%= item.title %></p>
+                <p class="display-price">价格:<%= item.price %></p>
+              </div>  
+              <div class="right-info">
+                <p class="display-description"><%= item.description %></p>
+              </div>
             </div>
-          </div>
           <% end %>
         </div>
     </div>

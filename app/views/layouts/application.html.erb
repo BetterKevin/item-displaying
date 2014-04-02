@@ -8,6 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <% if params[:action] != 'display' %>
+    <%= render 'layouts/header' %>
+  <% end %>
   <%= yield %>
+  <% if params[:action] != 'display' %>
+    <%= render 'layouts/footer' %>
+  <% end %>
 </body>
 </html>

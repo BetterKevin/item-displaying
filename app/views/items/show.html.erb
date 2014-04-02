@@ -1,6 +1,4 @@
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <h1>展示</h1>
-</nav>
+<% provide(:headline, '展示') %>
 <div class="container">
   <div class="center-block item-form">
     <p id="notice"><%= notice %></p>
@@ -22,12 +20,12 @@
       
           <h3>
             <strong>价格:</strong>
-            <%= @item.price %>
+            <%= @item.price %>元
           </h3>
 
           <h3>
-            <%= link_to '编辑', edit_item_path(@item) %>
-            <%= link_to '返回', items_path %>
+            <%= link_to '编辑', edit_item_path(@item), class: 'btn btn-primary' %>
+            <%= link_to '返回', items_path, class: 'btn btn-primary' %>
           </h3>
         </td>
       </tr>
