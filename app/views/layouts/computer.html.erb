@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ItemDisplaying</title>
+  <%= stylesheet_link_tag    "computer", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "computer", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
+</html>
