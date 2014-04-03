@@ -21,6 +21,8 @@
 /.jpeg
 
 # Ignore other unneeded files.
+public/system
+public/assets
 doc/
 *.swp
 *~

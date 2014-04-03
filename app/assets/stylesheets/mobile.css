@@ -10,8 +10,8 @@
  *
  *= require_self
  *= require jquery.mobile
- *= require custom
  *= require scaffolds
+ *= require gallery
  */
 
 

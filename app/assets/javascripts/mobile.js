@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require jquery.mobile
 //= require turbolinks
-//= require gallery.js
+//= require gallery
 

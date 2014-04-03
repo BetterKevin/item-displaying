@@ -8,9 +8,6 @@ function isWeixinBrowser(){
 }
 
 window.onload = function() {
-  if (!isWeixinBrowser()) {
-    document.write("请使用微信浏览器访问")
-  }
   var winWidth = document.body.clientWidth;
   var winHeight= document.body.clientHeight;
   var img = $("#display img");

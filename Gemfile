@@ -8,7 +8,6 @@ group :development do
   gem 'sqlite3'
 end
 gem "jquery_mobile_rails", "1.3.2"
-gem 'jquery-mobile-rails-assets'
 gem "paperclip"
 
 # Use SCSS for stylesheets
@@ -24,7 +23,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails','3.0.4'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
