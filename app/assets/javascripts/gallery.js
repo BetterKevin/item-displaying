@@ -7,7 +7,8 @@ function isWeixinBrowser(){
   return (/micromessenger/.test(ua)) ? true : false ;
 }
 
-window.onload = function() {
+$(document).ready(function(){
+
   var winWidth = document.body.clientWidth;
   var winHeight= document.body.clientHeight;
   var img = $("#display img");
@@ -44,7 +45,7 @@ window.onload = function() {
   for(var i=img.length - 1; i>0;i--){
     nextImage.push(img[i]);
   }
-}
+});
 
 /*Slide-Effect using CSS3 animation*/
 $(document).on("pageinit","#page",function(){
