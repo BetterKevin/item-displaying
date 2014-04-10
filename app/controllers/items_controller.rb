@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @itemtitle = params[:title]
   end
 
   # POST /items

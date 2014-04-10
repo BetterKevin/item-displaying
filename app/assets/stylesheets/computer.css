@@ -11,6 +11,7 @@
  *= require_self
  *= require custom
  *= require scaffolds
+ *= require_tree .
  */
 
 

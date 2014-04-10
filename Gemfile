@@ -8,6 +8,7 @@ group :development do
   gem 'sqlite3'
 end
 gem "jquery_mobile_rails", "1.3.2"
+gem "jquery-fileupload-rails"
 gem "paperclip"
 
 # Use SCSS for stylesheets

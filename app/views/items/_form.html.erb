@@ -14,36 +14,29 @@
   <div class="field">
     <div id="test">
       <div class="wrapper">
-       <%= f.file_field :photo %>
+        <%= f.file_field :photo %>
       </div>
-      <button id='photo-button', class="btn btn-info">选择图片</button>
+      <button class="btn btn-primary">选择图片</button>
     </div>
   </div>
 
-  <% if params[:action] == 'edit' %>
-    <div class="input-group">
-      <span class="input-group-addon">名称</span>
-      <%= f.text_field :title, class: 'form-control border-bottom-radius',placeholder: '名称' %>
-    </div>
-
-    <div class="input-group">
-      <span class="input-group-addon">介绍</span>
-      <%= f.text_area :description, class: 'form-control border-top-radius border-bottom-radius',placeholder: '介绍' %>
-    </div>
-
-    <div class="input-group">
-      <span class="input-group-addon">价格</span>
-      <%= f.text_field :price, class: 'form-control border-top-radius',placeholder: '价格' %>
-    </div>
-  <% end %>
-  </br> 
-  <% if params[:action] == 'new' %>
-  <div class="field">
-    <%= f.text_field :title, class: 'form-control border-bottom-radius',placeholder: '名称' %>
-    <%= f.text_area :description, class: 'form-control border-top-radius border-bottom-radius',placeholder: '介绍' %>
-    <%= f.text_field :price, class: 'form-control border-top-radius',placeholder: '价格' %>
+  <div class="input-group">
+    <span class="input-group-addon">名称</span>
+    <%= f.text_field :title, class: 'form-control border-bottom-radius' %>
   </div>
-  <% end %>
+
+  <div class="input-group">
+    <span class="input-group-addon">介绍</span>
+    <%= f.text_area :description, class: 'form-control border-top-radius border-bottom-radius' %>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon">价格</span>
+    <%= f.text_field :price, class: 'form-control border-top-radius' %>
+  </div>
+
+  <br />
+
   <div class="actions">
     <%= f.submit '提交', class: 'btn btn-primary btn-block' %>
   </div>

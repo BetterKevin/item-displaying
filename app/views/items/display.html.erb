@@ -3,20 +3,20 @@
   <div data-role="page" data-theme="b" id="page">
     <!--Image Gallery -->
     <div data-role="content" id="content">
-        <div id="display">
-          <% @items.each do |item| %>
-            <%= image_tag item.photo.url, class: 'item-image' %> 
-          <% end %>
-        </div>
-        <div id="imginfo">
-          <% @items.each do |item| %>
-            <p>
-              名称:<%= item.title %>
-              价格:<%= item.price %>
-              <%= item.description %>
-            </p>
-          <% end %>
-        </div>
+      <div id="display">
+        <% @items.each do |item| %>
+          <%= image_tag item.photo.url, class: 'item-image' %> 
+        <% end %>
+      </div>
+      <div id="imginfo">
+        <% @items.each do |item| %>
+          <div>
+            <p class="title">名称:<%= item.title %></p>
+            <p class="price">价格:<%= item.price %>元</p>
+            <p class="desc"><%= item.description %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
