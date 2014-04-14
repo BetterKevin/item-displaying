@@ -1,0 +1,13 @@
+cn:
+  activerecord: 
+    models:
+      item: "服装"
+    attributes:
+      item:
+        photo: "照片"
+        title: "名称"
+        price: "价格"
+        description: "描述"
+    errors:
+      messages:
+        blank: '不能为空'
