@@ -1,7 +1,7 @@
 <% provide(:headline, '服饰') %>
 <div class="container">
   <ul class="items">
-    <% @items.each do |item| %>      
+    <% @items.each do |item| %>
       <li class="item">
         <div class='item-action'>
           <%= link_to 'X', item, method: :delete, data: { confirm: '你确定吗?' }, class: 'item-delete' %>
@@ -13,7 +13,7 @@
     <li class="item new-item">
       <div class="plus-vertical-middle" >
         <%= link_to '+', new_item_path, class: 'plus-sign'  %>
-      </div> 
+      </div>
     </li>
   </ul>
 </div>

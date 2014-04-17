@@ -1,0 +1,25 @@
+<div>
+<!--Display Page-->
+  <div data-role="page" data-theme="b" id="page">
+    <!--Image Gallery -->
+    <div data-role="header">
+    <%= link_to "首页", items_path, :rel => "external" %>
+    </div>
+    <div data-role="content" id="content">
+      <div id="display">
+        <% @items.each do |item| %>
+          <%= image_tag item.photo.url, class: 'item-image' %> 
+        <% end %>
+      </div>
+      <div id="imginfo">
+        <% @items.each do |item| %>
+          <div>
+            <p class="title">名称:<%= item.title %></p>
+            <p class="price">价格:<%= item.price %>元</p>
+            <p class="desc"><%= item.description %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

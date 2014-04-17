@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  layout "computer"
   before_filter :authenticate, only: [:index, :edit, :new, :show, :create, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  has_mobile_fu_for :display
 
   # GET /items
   # GET /items.json
@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
 
   def display
     @items = Item.all
-    render :layout => "mobile"
   end
 
   # GET /items/1

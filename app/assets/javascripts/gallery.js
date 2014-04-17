@@ -4,15 +4,15 @@ var isInfoshow = false;
 var distance;
 var count = 0;
 
-function isWeixinBrowser(){
-  var ua = navigator.userAgent.toLowerCase();
-  return (/micromessenger/.test(ua)) ? true : false ;
-}
+//function isWeixinBrowser(){
+  //var ua = navigator.userAgent.toLowerCase();
+  //return (/micromessenger/.test(ua)) ? true : false ;
+//}
 
 $(document).ready(function() {
-  if (!isWeixinBrowser()) {
-    document.write("请使用微信浏览器访问");
-  }
+  //if (!isWeixinBrowser()) {
+    //document.write("请使用微信浏览器访问");
+  //}
   var winWidth = document.body.clientWidth;
   var winHeight= document.body.clientHeight;
   var img = $("#display img");
