@@ -1,13 +1,18 @@
-<div>
 <!--Display Page-->
   <div data-role="page" data-theme="b" id="page">
     <!--Image Gallery -->
     <div data-role="content" id="content">
-      <div id="display">
+    <!-- Slider -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
         <% @items.each do |item| %>
-          <%= image_tag item.photo.url, class: 'item-image' %> 
+          <div class="swiper-slide">
+            <%= image_tag item.photo.url, class: 'item-image' %> 
+          </div>
         <% end %>
+       </div> 
       </div>
+      <!-- ImageInfomation -->
       <div id="imginfo">
         <% @items.each do |item| %>
           <div>
@@ -19,4 +24,11 @@
       </div>
     </div>
   </div>
-</div>
+  <div class="pagination">
+  </div>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    pagination: '.pagination',
+    grabCursor: true
+  })
+</script>

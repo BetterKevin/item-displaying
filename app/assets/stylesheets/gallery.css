@@ -1,7 +1,7 @@
 * {
-  font-family: 'Microsoft YaHei','Helvetica Neue', Helvetica, Arial, Verdana,  "Hiragino Sans GB", STHeiti, sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: 'Microsoft YaHei','Helvetica Neue', Helvetica, Arial, Verdana,  "Hiragino Sans GB", STHeiti, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 #page{
@@ -10,50 +10,57 @@
 
 #content{
   display: block;
-  overflow: hidden;
 }
 
 .ui-content{
   padding: 0px;
 }
 
-#display{
+.swiper-wrapper{
   white-space:nowrap;
   position: relative;
   margin: 0 auto;
   padding: 0;
+  overflow: hidden;
 }
 
-#display img{
+.swiper-wrapper img{
   float: left;
   border: 2px solid black;
   -webkit-backface-visibility: hidden;
 }
 
 #imginfo{
-  position: absolute;
   background-color: white;
   opacity: 0;
   bottom: 0;
   z-index: 1000;
   overflow: hidden;
+  left: 0;
+  position: absolute;
 }
 
-.title {
-  float: left;
-  text-align: center;
+#imginfo p{
+  color: blue;
+  font-size: 20px;
 }
 
-.price {
-  float: left;
-  text-align: center;
-}
-
-.desc {
-  text-indent: 1em;
-}
 .ui-body-c, .ui-overlay-c {
   border: 1px solid #AAA;
   color: #333;
   background: #F9F9F9;
+}
+
+.title{
+  float: left;
+  text-align: center;
+}
+
+.price{
+  float: left;
+  text-align: center;
+}
+
+.desc{
+  text-indent: 1em;
 }

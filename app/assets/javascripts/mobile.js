@@ -15,4 +15,5 @@
 //= require jquery.mobile
 //= require turbolinks
 //= require gallery
+//= require idangerous.swiper-2.1.min
 
