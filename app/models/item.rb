@@ -5,5 +5,5 @@ class Item < ActiveRecord::Base
                         content_type: { content_type: ["imgae/jpg", "image/jpeg", "image/png"] }
   validates :title, presence: true
   validates :description, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, numericality: true
 end
