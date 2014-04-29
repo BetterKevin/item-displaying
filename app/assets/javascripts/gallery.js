@@ -1,16 +1,26 @@
+var prevTime;
+var currTime;
+var prevDist;
+var currDist;
+var Speed;
+
 function isWeixinBrowser(){
   var ua = navigator.userAgent.toLowerCase();
   return (/micromessenger/.test(ua)) ? true : false ;
 }
 
 $(document).ready(function() {
-  if (!isWeixinBrowser()) {
-    document.write("请使用微信浏览器访问");
-  }
+  // if (!isWeixinBrowser()) {
+  //   document.write("请使用微信浏览器访问");
+  // }
   var winWidth = document.body.clientWidth;
   var winHeight = document.body.clientHeight;
   var img = $("img");
   var div = $("#imginfo div");
+  prevTime = 0;
+  currTime = 0;
+  prevDist = 0;
+  currDist = 0;
 
   /*Set the size of the display-area*/
   $(".swiper-wrapper").height(Math.ceil((winHeight - $("#header").height()) * 0.90));
@@ -53,8 +63,7 @@ $(document).ready(function() {
 });
 
 /*Click to show or hide the imginfo*/
-$(document).on("pageinit", "#page",
-function() {
+$(document).on("pageinit", "#page",function() {
   $(".swiper-wrapper img").on('click',
   function(event) {
     var div = $("#imginfo div");
@@ -85,14 +94,57 @@ function() {
   });
 });
 
-$(document).on("pageinit", "#page",
-function() {
-  $(".swiper-wrapper img").on('touchmove',
-  function(event) {
+$(document).on("pageinit", "#page",function() {
+  $(".swiper-wrapper img").on('touchmove',function(event) {
     event.preventDefault();
+    var touch = event.originalEvent.targetTouches[0];
+
     $("#imginfo").css({
       'opacity': '0',
       '-webkit-transition': 'opacity 0.3s'
     });
+
+    prevTime = currTime;
+    prevDist = currDist;
+    currTime = new Date().getTime();
+    currDist = touch.clientX;
   });
 });
+
+/*$(document).on("pageinit", "#page",function() {
+  $(".swiper-wrapper img").on('touchend',function(event) {
+    Speed = getCurrentSpeed();
+    doSlide();
+    prevTime = 0;
+    prevDist = 0;
+    currTime = 0;
+    currDist = 0;
+  });
+});*/
+/*
+function getCurrentSpeed(){
+  var deltaDist = Math.abs(currDist - prevDist);
+  var deltaTime = currTime - prevTime;
+  if(deltaDist == 0){
+    return 0;
+  } else {
+    return (deltaDist/deltaTime*1000);
+  } 
+}
+
+function doSlide(){
+  var style = window.getComputedStyle($('.swiper-wrapper').get(0));
+  var matrix = new WebKitCSSMatrix(style.webkitTransform);
+  var distance = Speed / 10;
+
+  if(currDist < prevDist){
+    distance = -distance;
+  }
+  var movement = matrix.m41 + distance;
+
+  console.log(movement);
+  $(".swiper-wrapper").css({
+    '-webkit-transform': 'translate3d('+ movement +'px, 0px, 0px)',
+    '-webkit-transition': '-webkit-transform 0.5s'
+  });
+}*/
