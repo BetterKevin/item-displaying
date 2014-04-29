@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require gallery
 //= require idangerous.swiper-2.1.min
+//= require idangerous.swiper.scrollbar-2.1
 
