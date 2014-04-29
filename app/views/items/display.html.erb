@@ -1,34 +1,44 @@
 <!--Display Page-->
-  <div data-role="page" data-theme="b" id="page">
-    <!--Image Gallery -->
-    <div data-role="content" id="content">
-    <!-- Slider -->
+<div data-role="page" data-theme="b" id="page">
+  <!--Image Gallery -->
+  <div data-role="content" id="content">
+  <!-- Slider -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <% @items.each do |item| %>
-          <div class="swiper-slide">
-            <%= image_tag item.photo.url, class: 'item-image' %> 
-          </div>
-        <% end %>
-       </div> 
-      </div>
-      <!-- ImageInfomation -->
-      <div id="imginfo">
-        <% @items.each do |item| %>
-          <div>
-            <p class="title">名称:<%= item.title %></p>
-            <p class="price">价格:<%= item.price %>元</p>
-            <p class="desc"><%= item.description %></p>
-          </div>
-        <% end %>
-      </div>
+       <div class="swiper-slide">
+          <%= image_tag('show(1).jpg') %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag('show(2).jpg') %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag('show(3).jpg') %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag('show(4).jpg') %>
+        </div>
+        <div class="swiper-slide">
+          <%= image_tag('show(5).jpg') %>
+        </div>
+      </div> 
+    </div>
+    <!-- ImageInfomation -->
+    <div id="imginfo">
+      <% @items.each do |item| %>
+        <div>
+          <p class="title">名称:<%= item.title %></p>
+          <p class="price">价格:<%= item.price %>元</p>
+          <p class="desc"><%= item.description %></p>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="pagination">
-  </div>
+</div>
+<div class="pagination">
+</div>
 <script>
-  var mySwiper = new Swiper('.swiper-container', {
-    pagination: '.pagination',
-    grabCursor: true
-  })
+var mySwiper = new Swiper('.swiper-container', {
+  pagination: '.pagination',
+  grabCursor: true
+})
 </script>
