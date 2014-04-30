@@ -10,6 +10,7 @@ end
 gem "jquery_mobile_rails", "1.3.2"
 gem "jquery-fileupload-rails"
 gem "paperclip"
+gem 'newrelic_rpm'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
