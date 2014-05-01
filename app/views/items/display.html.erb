@@ -159,6 +159,11 @@
         <div class="swiper-slide">
           <%= image_tag('show51.jpg') %>
         </div>
+        <% @items.each do |item| %>
+          <div class="swiper-slide">
+            <%= image_tag item.photo.url(:photo) %>
+          </div>
+        <% end %>
       </div>
     </div>
     <!-- ImageInfomation -->
@@ -418,6 +423,13 @@
         <p class="price">价格: 100元</p>
         <p class="desc">show51 is good.</p>
       </div>
+      <% @items.each do |item| %>
+        <div>
+          <p class="title">名称: <%= item.title %></p>
+          <p class="price">价格: <%= item.price %>元</p>
+          <p class="desc"><%= item.description %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
