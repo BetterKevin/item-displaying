@@ -10,9 +10,9 @@ function isWeixinBrowser(){
 }
 
 $(document).ready(function() {
-  if (!isWeixinBrowser()) {
-    document.write("请使用微信浏览器访问");
-  }
+  // if (!isWeixinBrowser()) {
+  //   document.write("请使用微信浏览器访问");
+  // }
   var winWidth = document.body.clientWidth;
   var winHeight = document.body.clientHeight;
   var img = $("img");
