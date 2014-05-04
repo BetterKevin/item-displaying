@@ -1581,8 +1581,6 @@ var Swiper = function (selector, params) {
                 var bounceAmount = Math.abs(_this.velocity) * 20 * params.momentumBounceRatio;
                 var wrapperWidth = $(".swiper-wrapper").width() / $(".swiper-wrapper div").length;
                 var remainder = Math.abs(Math.ceil(newPosition) % wrapperWidth);
-                console.log(newPosition);
-                console.log(remainder);
 
                 if(newPosition < 0 && remainder != 0 && remainder < wrapperWidth/2){
                   newPosition = Math.ceil(newPosition) + remainder;
