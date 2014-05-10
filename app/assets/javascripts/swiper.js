@@ -116,7 +116,7 @@ var Swiper = function (selector, params) {
         speed : 300,
         freeMode : false,
         freeModeFluid : false,
-        momentumRatio: 1,
+        momentumRatio: 0.2,
         momentumBounce: true,
         momentumBounceRatio: 1,
         slidesPerView : 1,
@@ -1574,7 +1574,7 @@ var Swiper = function (selector, params) {
         if (params.freeMode) {
             if (params.freeModeFluid) {
                 var momentumDuration = 1000 * params.momentumRatio;
-                var momentumDistance = _this.velocity * momentumDuration;
+                var momentumDistance = _this.velocity * momentumDuration * 4;
                 var newPosition = _this.positions.current + momentumDistance;
                 var doBounce = false;
                 var afterBouncePosition;
@@ -1583,16 +1583,16 @@ var Swiper = function (selector, params) {
                 var remainder = Math.abs(Math.ceil(newPosition) % wrapperWidth);
 
                 if(newPosition < 0 && remainder != 0 && remainder < wrapperWidth/2){
-                  newPosition = Math.ceil(newPosition) + remainder;
+                    newPosition = Math.ceil(newPosition) + remainder;
                 }
                 if(newPosition < 0 && remainder != 0 && remainder >= wrapperWidth/2){
-                  newPosition = Math.ceil(newPosition) - (wrapperWidth - remainder);
+                    newPosition = Math.ceil(newPosition) - (wrapperWidth - remainder);
                 }
                 if(newPosition >0 && remainder != 0 && remainder < wrapperWidth/2){
-                  newPosition = Math.ceil(newPosition) - remainder;
+                    newPosition = Math.ceil(newPosition) - remainder;
                 }
                 if(newPosition > 0 && remainder != 0 && remainder >= wrapperWidth/2){
-                  newPosition = Math.ceil(newPosition) + (wrapperWidth - remainder);
+                    newPosition = Math.ceil(newPosition) + (wrapperWidth - remainder);
                 }
 
                 if (newPosition < -maxPosition) {
@@ -1614,11 +1614,13 @@ var Swiper = function (selector, params) {
                     else newPosition = 0;
                 }
                 //Fix duration
-                if (_this.velocity !== 0) momentumDuration = Math.abs((newPosition - _this.positions.current) / _this.velocity);
+                if (_this.velocity !== 0 & Math.abs((newPosition - _this.positions.current)) > wrapperWidth) {
+                    momentumDuration = Math.abs((newPosition - _this.positions.current) / _this.velocity);
+                }
 
                 _this.setWrapperTranslate(newPosition);         
 
-                _this.setWrapperTransition(momentumDuration*2/3);
+                _this.setWrapperTransition(momentumDuration);
 
                 if (params.momentumBounce && doBounce) {
                     _this.wrapperTransitionEnd(function () {

@@ -15,5 +15,6 @@
 //= require jquery.mobile
 //= require gallery
 //= require swiper
+//= require fastclick
 //= require turbolinks
 
