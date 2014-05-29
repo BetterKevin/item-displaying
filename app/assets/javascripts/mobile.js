@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.mobile
-//= require gallery
-//= require swiper
-//= require fastclick
+//= require SlideData
+//= require AppView
+//= require SlideshowView
+//= require SlideView
+//= require main
 //= require turbolinks
 
