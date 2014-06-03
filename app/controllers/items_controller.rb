@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.order("updated_at DESC")
   end
 
   def display
@@ -35,8 +35,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: '成功创建' }
-        format.json { render action: 'show', status: :created, location: @item }
+        format.html { redirect_to items_url, notice: '成功创建' }
+        format.json { render action: 'edit', status: :created, location: @item }
       else
         format.html { render action: 'new' }
         format.json { render json: @item.errors, status: :unprocessable_entity }

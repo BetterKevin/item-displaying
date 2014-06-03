@@ -1,5 +1,5 @@
-cn:
-  activerecord: 
+zh_CN:
+  activerecord:
     models:
       item: "服装"
     attributes:
@@ -9,5 +9,10 @@ cn:
         price: "价格"
         description: "描述"
     errors:
+      models:
+        item:
+          attributes:
+            price:
+              not_a_number: '不是数字'
       messages:
         blank: '不能为空'
