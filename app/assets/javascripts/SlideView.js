@@ -47,7 +47,6 @@ define(function(require, exports, module) {
 
         this.mainNode.add(background);
 
-
         // background.on('click', function() {
         //     // the event output handler is used to broadcast outwards
         //     this._eventOutput.emit('click');
@@ -115,7 +114,6 @@ define(function(require, exports, module) {
         });
 
         this.mainNode.add(this.photoModifier).add(this.photo);
-
 
     }
 

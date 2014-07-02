@@ -51,14 +51,14 @@ define(function(require, exports, module) {
             }.bind(this));
             // slide.on('click', this.showNextSlide.bind(this));
         }
-        this.showCurrentSlide();
+        this.showCurrnetNextSlide();
     }
 
 
     SlideshowView.prototype = Object.create(View.prototype);
     SlideshowView.prototype.constructor = SlideshowView;
 
-    SlideshowView.prototype.showCurrentSlide = function() {
+    SlideshowView.prototype.showCurrnetNextSlide = function() {
         this.ready = false;
 
         var slide = this.slides[this.currentIndex];
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
 
         this.currentIndex++;
         if (this.currentIndex === this.slides.length) this.currentIndex = 0;
-        this.showCurrentSlide();
+        this.showCurrnetNextSlide();
     };
 
     SlideshowView.prototype.showPreSlide = function() {
@@ -100,15 +100,14 @@ define(function(require, exports, module) {
             inOpacity: 1,
             inTransform: Transform.translate(300, 0, 0),
             outTransform: Transform.translate(-500, 0, 0),
-            // showTransform: Transform.translate(300, 0, 0),
-            inTransition: { duration: 500, curve: Easing.outBack },
-            outTransition: { duration: 350, curve: Easing.inQuad }
+            inTransition: { duration: 300 },
+            outTransition: { duration: 300 }
         },
         lightboxOptsPre: {
             inTransform: Transform.translate(-300, 0, 0),
             outTransform: Transform.translate(500, 0, 0),
-            inTransition: { duration: 500, curve: Easing.outBack },
-            outTransition: { duration: 350, curve: Easing.inQuad }
+            inTransition: { duration: 300 },
+            outTransition: { duration: 300 }
         }
     };
 
