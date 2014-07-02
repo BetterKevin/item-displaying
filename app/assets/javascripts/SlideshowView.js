@@ -1,12 +1,14 @@
+/*** SlideshowView ***/
+
 define(function(require, exports, module) {
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
     var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
-    var Lightbox = require('famous/views/Lightbox');
     var Easing = require('famous/transitions/Easing');
+    var Lightbox = require('famous/views/Lightbox');
 
-    var SlideView = require('views/SlideView');
+    var SlideView = require('SlideView');
 
     function SlideshowView() {
         View.apply(this, arguments);
@@ -23,27 +25,8 @@ define(function(require, exports, module) {
         _createSlides.call(this);
     }
 
-    SlideshowView.prototype = Object.create(View.prototype);
-    SlideshowView.prototype.constructor = SlideshowView;
-
-    SlideshowView.DEFAULT_OPTIONS = {
-        size: [450, 500],
-        data: undefined,
-        lightboxOpts: {
-            inOpacity: 1,
-            outOpacity: 0,
-            inOrigin: [0, 0],
-            outOrigin: [0, 0],
-            showOrigin: [0, 0],
-            inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, -300]),
-            outTransform: Transform.thenMove(Transform.rotateZ(0.7), [0, window.innerHeight, -1000]),
-            inTransition: { duration: 650, curve: 'easeOut' },
-            outTransition: { duration: 500, curve: Easing.inCubic }
-        }
-    };
-
     function _createLightbox() {
-        this.lightbox = new Lightbox(this.options.lightboxOpts);
+        this.lightbox = new Lightbox();
         this.mainNode.add(this.lightbox);
     }
 
@@ -59,19 +42,39 @@ define(function(require, exports, module) {
 
             this.slides.push(slide);
 
-            slide.on('click', this.showNextSlide.bind(this));
-        }
+            slide.on('nextPage', function() {
+                this.showNextSlide();
+            }.bind(this));
 
+            slide.on('prePage', function() {
+                this.showPreSlide();
+            }.bind(this));
+            // slide.on('click', this.showNextSlide.bind(this));
+        }
         this.showCurrentSlide();
     }
+
+
+    SlideshowView.prototype = Object.create(View.prototype);
+    SlideshowView.prototype.constructor = SlideshowView;
 
     SlideshowView.prototype.showCurrentSlide = function() {
         this.ready = false;
 
         var slide = this.slides[this.currentIndex];
+        this.lightbox.setOptions(this.options.lightboxOpts);
         this.lightbox.show(slide, function() {
             this.ready = true;
-            slide.fadeIn();
+        }.bind(this));
+    };
+
+    SlideshowView.prototype.showCurrentPreSlide = function() {
+        this.ready = false;
+
+        var slide = this.slides[this.currentIndex];
+        this.lightbox.setOptions(this.options.lightboxOptsPre);
+        this.lightbox.show(slide, function() {
+            this.ready = true;
         }.bind(this));
     };
 
@@ -81,6 +84,32 @@ define(function(require, exports, module) {
         this.currentIndex++;
         if (this.currentIndex === this.slides.length) this.currentIndex = 0;
         this.showCurrentSlide();
+    };
+
+    SlideshowView.prototype.showPreSlide = function() {
+        if (!this.ready) return;
+
+        this.currentIndex--;
+        if (this.currentIndex === -1) this.currentIndex = this.slides.length - 1;
+        this.showCurrentPreSlide();
+    };
+
+    SlideshowView.DEFAULT_OPTIONS = {
+        size: [450, 500],
+        lightboxOpts: {
+            inOpacity: 1,
+            inTransform: Transform.translate(300, 0, 0),
+            outTransform: Transform.translate(-500, 0, 0),
+            // showTransform: Transform.translate(300, 0, 0),
+            inTransition: { duration: 500, curve: Easing.outBack },
+            outTransition: { duration: 350, curve: Easing.inQuad }
+        },
+        lightboxOptsPre: {
+            inTransform: Transform.translate(-300, 0, 0),
+            outTransform: Transform.translate(500, 0, 0),
+            inTransition: { duration: 500, curve: Easing.outBack },
+            outTransition: { duration: 350, curve: Easing.inQuad }
+        }
     };
 
     module.exports = SlideshowView;

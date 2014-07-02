@@ -12,10 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require SlideData
-//= require AppView
-//= require SlideshowView
-//= require SlideView
-//= require main
 //= require turbolinks
 

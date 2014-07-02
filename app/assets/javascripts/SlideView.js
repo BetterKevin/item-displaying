@@ -6,16 +6,15 @@ define(function(require, exports, module) {
     var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
     var ImageSurface = require('famous/surfaces/ImageSurface');
-    var Transitionable   = require('famous/transitions/Transitionable');
-    var SpringTransition = require('famous/transitions/SpringTransition');
+    var MouseSync = require('famous/inputs/MouseSync');
 
-    Transitionable.registerMethod('spring', SpringTransition);
-
-    var SlideData = require('data/SlideData');
+    var SlideData = require('SlideData');
 
     function SlideView() {
         View.apply(this, arguments);
 
+        // this.options created from any options passed in during
+        // instantiation and the default options (explanation below)
         this.rootModifier = new StateModifier({
             size: this.options.size
         });
@@ -30,27 +29,49 @@ define(function(require, exports, module) {
     SlideView.prototype = Object.create(View.prototype);
     SlideView.prototype.constructor = SlideView;
 
+    // setting the size property in default options here
     SlideView.DEFAULT_OPTIONS = {
         size: [400, 450],
         filmBorder: 15,
         photoBorder: 3,
-        photoUrl: SlideData.defaultImage,
-        angle: -0.5
+        photoUrl: SlideData.defaultImage
     };
 
     function _createBackground() {
         var background = new Surface({
             properties: {
                 backgroundColor: '#FFFFF5',
-                boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)',
-                cursor: 'pointer'
+                boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)'
             }
         });
 
         this.mainNode.add(background);
 
-        background.on('click', function() {
-            this._eventOutput.emit('click');
+
+        // background.on('click', function() {
+        //     // the event output handler is used to broadcast outwards
+        //     this._eventOutput.emit('click');
+        // }.bind(this));
+
+        this.position = [0, 0];
+
+        var mouseSync = new MouseSync();
+
+        background.pipe(mouseSync);
+
+        mouseSync.on("start", function() {
+            position = [0, 0];
+        }.bind(this));
+
+        mouseSync.on("update", function(data) {
+            position = data.position;
+        }.bind(this));
+
+        mouseSync.on("end", function() {
+            if (position[0] > 0)
+                this._eventOutput.emit('prePage');
+            else
+                this._eventOutput.emit('nextPage');
         }.bind(this));
     }
 
@@ -69,17 +90,17 @@ define(function(require, exports, module) {
         var filmModifier = new StateModifier({
             origin: [0.5, 0],
             align: [0.5, 0],
-            transform: Transform.translate(0, this.options.filmBorder, 0.05)
+            transform: Transform.translate(0, this.options.filmBorder, 1)
         });
 
         this.mainNode.add(filmModifier).add(film);
     }
 
     function _createPhoto() {
-        var size = this.options.filmSize - 2 * this.options.photoBorder;
+        var photoSize = this.options.filmSize - 2 * this.options.photoBorder;
 
-        var photo = new ImageSurface({
-            size: [size, size],
+        this.photo = new ImageSurface({
+            size: [photoSize, photoSize],
             content: this.options.photoUrl,
             properties: {
                 zIndex: 2,
@@ -90,31 +111,13 @@ define(function(require, exports, module) {
         this.photoModifier = new StateModifier({
             origin: [0.5, 0],
             align: [0.5, 0],
-            transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 0.1),
-            opacity: 0.01
+            transform: Transform.translate(0, this.options.filmBorder + this.options.photoBorder, 2)
         });
 
-        this.mainNode.add(this.photoModifier).add(photo);
+        this.mainNode.add(this.photoModifier).add(this.photo);
+
+
     }
-
-    SlideView.prototype.fadeIn = function() {
-        this.photoModifier.setOpacity(1, { duration: 1500, curve: 'easeIn' });
-        this.shake();
-    };
-
-    SlideView.prototype.shake = function() {
-        this.rootModifier.halt();
-
-        this.rootModifier.setTransform(
-            Transform.rotateX(this.options.angle),
-            { duration: 200, curve: 'easeOut' }
-        );
-
-        this.rootModifier.setTransform(
-            Transform.identity,
-            { method: 'spring', period: 600, dampingRatio: 0.15 }
-        );
-    };
 
     module.exports = SlideView;
 });
