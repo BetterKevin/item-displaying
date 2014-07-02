@@ -1,8 +1,12 @@
 <% provide(:headline, '编辑') %>
 <div class="container">
   <div class="center-block item-form" >
-    <%= render 'form' %>
-
-    <%= link_to '返回', items_path, class: 'btn btn-primary btn-block' %>
+    <div class="form pull-left">
+      <%= render 'form' %>
+      <%= link_to '返回', items_path, class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class="photo pull-left">
+      <img src='<%= @item.photo.url(:iphone5) %>'>
+    </div>
   </div>
 </div>

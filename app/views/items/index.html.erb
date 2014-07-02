@@ -1,20 +1,19 @@
-<% provide(:headline, '服饰') %>
+<% provide(:headline, '红贝缇后台管理系统') %>
 <div class="container">
+  <p id="notice"><%= notice %></p>
   <ul class="items">
-    <% @items.each do |item| %>      
+    <li class="item new-item">
+      <%= link_to '添加产品', new_item_path, class: 'btn btn-success'  %>
+    </li>
+    <% @items.each do |item| %>
       <li class="item">
-        <div class='item-action'>
-          <%= link_to 'X', item, method: :delete, data: { confirm: '你确定吗?' }, class: 'item-delete' %>
-          <%= link_to '编辑', edit_item_path(item), class: 'item-edit' %>
-        </div>
         <%= image_tag item.photo.url(:iphone5), class: 'item-image' %>
+        <div class='item-action'>
+          <%= link_to '编辑', edit_item_path(item), class: 'btn btn-sm btn-primary' %>
+          <%= link_to '删除', item, method: :delete, data: { confirm: '你确定吗?' }, class: 'btn btn-sm btn-danger' %>
+        </div>
       </li>
     <% end %>
-    <li class="item new-item">
-      <div class="plus-vertical-middle" >
-        <%= link_to '+', new_item_path, class: 'plus-sign'  %>
-      </div> 
-    </li>
   </ul>
 </div>
 

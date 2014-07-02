@@ -1,68 +1,67 @@
 * {
-    font-family: 'Microsoft YaHei','Helvetica Neue', Helvetica, Arial, Verdana,  "Hiragino Sans GB", STHeiti, sans-serif;
-    margin: 0;
-    padding: 0;
+	font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, Verdana, "Hiragino Sans GB", STHeiti, sans-serif;
+	margin: 0;
+	padding: 0
 }
-
-#page{
-  background-image: url(background.jpg);
+#page {
+	background-image: url('../images/background.jpg');
+	overflow: hidden
 }
-
-#content{
-  display: block;
+#content {
+	display: block
 }
-
-.ui-content{
-  padding: 0px;
+.ui-content {
+	padding: 0px
 }
-
-.swiper-wrapper{
-  white-space:nowrap;
-  position: relative;
-  margin: 0 auto;
-  padding: 0;
-  overflow: hidden;
-  z-index: 1001;
-  touch-action: manipulation;
+.swiper-wrapper {
+	white-space: nowrap;
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	overflow: hidden;
 }
-
-.swiper-wrapper img{
-  float: left;
-  border: 2px solid black;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: scale(0.90, 0.95);
+.swiper-container {
+	overflow: hidden;
+	-webkit-transform: scale(0.90, 0.9);
 }
-
-#imginfo{
-  background-color: black;
-  opacity: 0;
-  bottom: 0;
-  overflow: hidden;
-  left: 0;
-  position: absolute;
+.swiper-wrapper img {
+	float: left;
+	border: 2px solid black;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: scale(0.90, 0.9);
 }
-
-#imginfo p{
-  color: white;
-  font-size: 20px;
+#imginfo {
+	background-color: black;
+	opacity: 0;
+	overflow: hidden;
+	border: 2px solid black;
+	position: absolute;
+	left: 0;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: scale(0.81);
+	z-index: 500
 }
-
+#imginfo p {
+	color: white;
+	font-size: 20px;
+}
 .ui-body-c, .ui-overlay-c {
-  border: 1px solid #AAA;
-  color: #333;
-  background: #F9F9F9;
+	border: 1px solid #AAA;
+	color: #333;
+	background: #F9F9F9
 }
-
-.title{
-  float: left;
-  text-align: center;
+.title {
+	font-family: Microsoft JhengHei;
+	line-height: 2em;
+	-webkit-transform: scale(0.9);
 }
-
-.price{
-  float: left;
-  text-align: center;
+.price {
+	font-family: Microsoft JhengHei;
+	line-height: 2em;
+	-webkit-transform: scale(0.9);
 }
-
-.desc{
-  text-indent: 1em;
+.desc {
+	font-family: Microsoft JhengHei;
+	line-height: 2em;
+	-webkit-transform: scale(0.9);
 }

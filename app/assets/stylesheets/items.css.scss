@@ -1,3 +1,91 @@
-// Place all the styles related to the Items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$item-height: 120px;
+$item-width: 96px;
+
+#items{
+  // new & edit
+  &.edit {
+    .item-form { width: 80%; }
+  }
+  &.new, &.create {
+    .item-form { width: 60%; }
+  }
+
+  .item-form {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    #item_title {
+      height: 50px;
+    }
+    #item_description {
+      height: 100px;
+    }
+    #item_price {
+      height: 50px;
+    }
+    .form {
+      width: 60%;
+
+      #test {
+        position: relative;
+        .wrapper {
+          opacity: 0;
+          position: absolute;
+          height: 40px;
+          top: 0;
+          z-index: 2;
+          #item_photo {
+            height: 40px;
+            width: 85px;
+            cursor: pointer;
+          }
+        }
+        button {
+          position: relative;
+          top: 0;
+          z-index: 1;
+        }
+      }
+    }
+    .photo {
+      margin-left: 50px;
+    }
+  }
+  // index
+  &.index {
+    .items {
+      list-style-type: none;
+      .item {
+        float: left;
+        position: relative;
+        border: 0px;
+        overflow: hidden;
+        margin: 15px 0 15px 17px;
+        .item-action {
+          margin-top: 10px;
+          .item-edit { }
+          .item-delete { }
+        }
+        .item-image {
+          height: $item-height;
+          width: $item-width;
+        }
+        &.new-item {
+          a { margin-top: 50px; }
+        }
+      }
+    }
+  }
+
+  // show
+  &.show {
+    .item-content {
+      font-size: 20px;
+      text-decoration: underline;
+    }
+    .show-photo > img {
+      border-radius: 20px;
+      box-shadow: 0 7px 14px #ffffff;
+    }
+  }
+
+}
